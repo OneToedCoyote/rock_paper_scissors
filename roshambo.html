@@ -1,0 +1,65 @@
+<script>
+    // establish initial scores
+    let playerScore = 0;
+    let computerScore = 0;
+    
+    // recieve weapon choice from user
+    function playerInput() {
+      playerSelection = prompt("Choose your weapon!").toLowerCase();
+      return playerSelection;
+    }
+    
+    // randomizes computer weapon choice
+    function computerInput() {
+      let weapons = ['rock', 'paper', 'scissors'];
+      computerSelection = weapons[Math.floor(Math.random() * weapons.length)];
+      return computerSelection;
+    }
+    
+    // plays a single round
+    function playRound(playerSelection, computerSelection) {
+      if (playerSelection === computerSelection) {
+        console.log('It\'s a tie! ' + computerSelection.toUpperCase() + ' all around!');
+      } else if (
+        (playerSelection === 'rock' && computerSelection === 'scissors') ||
+        (playerSelection === 'scissors' && computerSelection === 'paper') ||
+        (playerSelection === 'paper' && computerSelection === 'rock')
+      ) {
+        console.log('You win! ' + playerSelection.toUpperCase() + ' beats ' + computerSelection.toUpperCase() + ' !');
+        playerScore++;
+      } else if (
+        (playerSelection === 'scissors' && computerSelection === 'rock') ||
+        (playerSelection === 'rock' && computerSelection === 'paper') ||
+        (playerSelection === 'paper' && computerSelection === 'scissors')
+        ) {
+        console.log('Computer wins! ' + computerSelection.toUpperCase() + ' beats ' + playerSelection.toUpperCase() + ' !');
+        computerScore++;
+      } else {
+        console.log('Let\'s try that again...');
+      }
+    }
+    
+    // keeps ongoing score
+    function scoreboard() {
+        console.log('You: ' + playerScore + ' | Computer: ' + computerScore);
+    }
+    
+    // plays 5 round game and logs final result
+    function game() {
+        for (i = 0; i < 4; i++) {
+          playRound(playerInput(), computerInput());
+        scoreboard();    
+        } if (i = 4) {
+          if (playerScore === computerScore) {
+          console.log('Final result... It\'s a tie!')
+        } else if (playerScore > computerScore) {
+          console.log('Final result... You win!')
+        } else if (playerScore < computerScore) {
+          console.log('Final result... You lose!')
+        }
+      }
+    }
+    
+    game();
+    </script>
+    <body></body>
